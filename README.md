@@ -6,8 +6,8 @@ LINK: Dolphins social network (utilizar o arquivo dolphins.paj)
 OBS: Para ler um grafo no formato .paj 
 
 
-<code>import networkx as nx</code>
-<code>G = nx.read_pajek('karate.paj')</code>
+	import networkx as nx
+	G = nx.read_pajek('karate.paj')
 
 Para implementar a solução desse problema foi utilizado o pseudo código existente nas páginas 38 e 39 das notas de aula disponibilizadas pelo professor:
 
@@ -56,30 +56,30 @@ Porém, o pseudo código não retorna uma árvore em si, somente adiciona atribu
 
 O único atributo que precisamos fazer uso após o algoritmo ter sido executado é 'pi', assim, criamos um grafo T com os mesmo vértices de G e adicionamos somente as arestas correspondentes à um nó e seu atributo 'pi'.
 
-<code>	#gerando Tree</code>
-<code>	BFS_Tree = nx.Graph()</code>
-<code>	for node in G.node:</code>
-<code>		BFS_Tree.add_node(node)</code>
-<code>	for node in G.node:</code>
-<code>		BFS_Tree.add_edge(node, G.nodes[node]['pi'])</code>
+	#gerando Tree
+	BFS_Tree = nx.Graph()
+	for node in G.node:
+		BFS_Tree.add_node(node)
+	for node in G.node:
+		BFS_Tree.add_edge(node, G.nodes[node]['pi'])
 
 
 Com a árvore gerada podemos imprimir os grafos através das funções nx.draw() e plt.show()
 
-<code>	import networkx as nx</code>
-<code>	import queue as q</code>
-<code>	import matplotlib.pyplot as plt</code>
-<code>	nx.draw(G)</code>
-<code>	plt.show()</code>
-<code>	nx.draw(Tree)</code>
-<code>	plt.show()</code>
+	import networkx as nx
+	import queue as q
+	import matplotlib.pyplot as plt
+	nx.draw(G)
+	plt.show()
+	nx.draw(Tree)
+	plt.show()
 
 
 Primeiramente aparecerá uma tela com a imagem do grafo inicial G, e quando a fecharmos outra tela será mostrada, dessa vez cam a BFS Tree do grafo anterior.
 O comando para executar o programa é
-<code>
+
 	$ python3 BFS.py 'arquivo' 'node'
-</code>
+
 Onde arquivo é o nome (incluindo extenção) do arquivo '.paj' que contém o grafo e node é o nó raiz do algoritmo. Se o arquivo não for passado como parãmetro o programa executa por padrão com um grafo completo de tamanho 10. E se o nó raiz não for passado o primeiro nó do grafo é usado como raiz.
 
 O mesmo procedimento foi realizado para o algoritmo DFS, não sendo necessária apenas a biblioteca queue, pois esse algoritmo trabalha com pilhas ao invés de filas, usando recursividade como abstração da pilha. O pseudocódigo contido na oágina 43 das notas de aula foi utilizado como base para implementação:
@@ -121,6 +121,7 @@ O atributo time foi ignorado, apesar de aparecer no pseudo código ele não é e
 A mesma ordem de parâmetros foi usada, seguindo os mesmo padrẽs caso não sejam mandados o arquivo ou a raiz nos parâmetros. Veja os resultados abaixo:
 
 karate.paj com raiz em '1'
+
 Grafo
 
 <img src="img/img/karate_graph.png">
@@ -135,6 +136,7 @@ DFS_Tree
 
 
 dolphin.paj com raiz em '1'
+
 Grafo
 
 <img src="img/dolphin_graph.png">
@@ -149,6 +151,7 @@ DFS_Tree
 
 
 Grafo k10 (grafo usado como padrão) com raiz em 1
+
 Grafo
 
 <img src="img/complete_graph.png">
