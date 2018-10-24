@@ -124,7 +124,7 @@ karate.paj com raiz em '1'
 
 Grafo
 
-<img src="img/img/karate_graph.png">
+<img src="img/karate_graph.png">
 
 BFS_Tree
 
