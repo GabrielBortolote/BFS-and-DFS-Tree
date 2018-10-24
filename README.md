@@ -5,16 +5,15 @@ LINK: Zachary's karate club (utilizar o arquivo karate.paj)
 LINK: Dolphins social network (utilizar o arquivo dolphins.paj)
 OBS: Para ler um grafo no formato .paj 
 
-<code>
-	import networkx as nx
-	G = nx.read_pajek('karate.paj')
-</code>
+
+<code>import networkx as nx</code>
+<code>G = nx.read_pajek('karate.paj')</code>
 
 Para implementar a solução desse problema foi utilizado o pseudo código existente nas páginas 38 e 39 das notas de aula disponibilizadas pelo professor:
 
 ##PSEUDOCÓDIGO
-<code>
-BFS(G, s)
+
+	BFS(G, s)
 	{
 		for each v∈V−{s}
 		{
@@ -41,7 +40,7 @@ BFS(G, s)
 			u. color = BLACK // Após explorar todos vizinhos de u, finalizo u
 		}
 	}
-</code>
+
 
 O pseudo código foi facilmente convertido para python3 através das bibliotecas:
 	
@@ -57,26 +56,24 @@ Porém, o pseudo código não retorna uma árvore em si, somente adiciona atribu
 
 O único atributo que precisamos fazer uso após o algoritmo ter sido executado é 'pi', assim, criamos um grafo T com os mesmo vértices de G e adicionamos somente as arestas correspondentes à um nó e seu atributo 'pi'.
 
-<code>	
-	#gerando Tree
-	BFS_Tree = nx.Graph()
-	for node in G.node:
-		BFS_Tree.add_node(node)
-	for node in G.node:
-		BFS_Tree.add_edge(node, G.nodes[node]['pi'])
-</code>
+<code>	#gerando Tree</code>
+<code>	BFS_Tree = nx.Graph()</code>
+<code>	for node in G.node:</code>
+<code>		BFS_Tree.add_node(node)</code>
+<code>	for node in G.node:</code>
+<code>		BFS_Tree.add_edge(node, G.nodes[node]['pi'])</code>
+
 
 Com a árvore gerada podemos imprimir os grafos através das funções nx.draw() e plt.show()
 
-<code>
-	import networkx as nx
-	import queue as q
-	import matplotlib.pyplot as plt
-	nx.draw(G)
-	plt.show()
-	nx.draw(Tree)
-	plt.show()
-</code>
+<code>	import networkx as nx</code>
+<code>	import queue as q</code>
+<code>	import matplotlib.pyplot as plt</code>
+<code>	nx.draw(G)</code>
+<code>	plt.show()</code>
+<code>	nx.draw(Tree)</code>
+<code>	plt.show()</code>
+
 
 Primeiramente aparecerá uma tela com a imagem do grafo inicial G, e quando a fecharmos outra tela será mostrada, dessa vez cam a BFS Tree do grafo anterior.
 O comando para executar o programa é
@@ -89,35 +86,35 @@ O mesmo procedimento foi realizado para o algoritmo DFS, não sendo necessária 
 
 ##PSEUDOCÓDIGO
 
-DFS(G, s)
-{
-	for each u∈V
+	DFS(G, s)
 	{
-		u.color = WHITE
-		π(u)=nil
-	}
-	time = 0 // variável global para armazenar o tempo
-	DFS_visit(G, s)
-}
-
-// Função recursiva que é chamada sempre que um vértice é descoberto
-DFS_visit(G, u)
-{
-	time++
-	u.d = time
-	u.color = GRAY
-	for each v∈N(u)
-	{
-		if v.color == WHITE
+		for each u∈V
 		{
-			π(v)=u
-			DFS_visit(G, v) // chamada recursiva
+			u.color = WHITE
+			π(u)=nil
 		}
+		time = 0 // variável global para armazenar o tempo
+		DFS_visit(G, s)
 	}
-	u.color = BLACK
-	time++
-	u.f = time
-}
+
+	// Função recursiva que é chamada sempre que um vértice é descoberto
+	DFS_visit(G, u)
+	{
+		time++
+		u.d = time
+		u.color = GRAY
+		for each v∈N(u)
+		{
+			if v.color == WHITE
+			{
+				π(v)=u
+				DFS_visit(G, v) // chamada recursiva
+			}
+		}
+		u.color = BLACK
+		time++
+		u.f = time
+	}
 
 O atributo time foi ignorado, apesar de aparecer no pseudo código ele não é essencial para gerar a árvore, útil apenas para análise.
 
@@ -125,32 +122,41 @@ A mesma ordem de parâmetros foi usada, seguindo os mesmo padrẽs caso não sej
 
 karate.paj com raiz em '1'
 Grafo
+
 <img src="img/img/karate_graph.png">
 
 BFS_Tree
-<img src="img/karate_DFS_tree.png">
+
+<img src="img/karate_BFS_tree.png">
 
 DFS_Tree
-<img src="img/karate_BFS_tree.png">
+
+<img src="img/karate_DFS_tree.png">
 
 
 dolphin.paj com raiz em '1'
 Grafo
+
 <img src="img/dolphin_graph.png">
 
 BFS_Tree
-<img src="img/dolphin_DFS_tree.png">
+
+<img src="img/dolphin_BFS_tree.png">
 
 DFS_Tree
-<img src="img/dolphin_BFS_tree.png">
+
+<img src="img/dolphin_DFS_tree.png">
 
 
 Grafo k10 (grafo usado como padrão) com raiz em 1
 Grafo
+
 <img src="img/complete_graph.png">
 
 BFS_Tree
-<img src="img/complete_DFS_tree.png">
+
+<img src="img/complete_BFS_tree.png">
 
 DFS_Tree
-<img src="img/complete_BFS_tree.png">
+
+<img src="img/complete_DFS_tree.png">
