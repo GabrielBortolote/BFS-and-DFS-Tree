@@ -1,4 +1,4 @@
-#BFS AND DFS
+# BFS AND DFS
 
 Implementar os algoritmos BFS e DFS para extrair as árvores BFS-tree e DFS-tree dos grafos a seguir.
 LINK: Zachary's karate club (utilizar o arquivo karate.paj)
